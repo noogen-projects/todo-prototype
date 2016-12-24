@@ -360,7 +360,7 @@ if [ $1 = 'tj' ]; then
 
         if [ ! -z "$cur_date" ] && [[ $line =~ ^\[[[:space:]]*"time":[[:space:]]*([0-9\.]*) ]]; then
           if [ $cur_date -ge $from ] && [ $cur_date -le $to ]; then
-            if [ -z "$tag" ] || [[ $line =~ ^\[[[:space:]]*"time":[[:space:]]*([0-9\.]*).*"$tag".* ]]; then
+            if [ -z "$tag" ] || [[ $line =~ ^\[[[:space:]]*"time":[[:space:]]*([0-9\.]*).*[[:space:]]"$tag".* ]]; then
               time=$(echo "$time ${BASH_REMATCH[1]}" | awk '{print $1+$2}')
             fi
           fi
