@@ -1,6 +1,14 @@
 #!/bin/bash
 
-source todo_config
+config_file="todo_config"
+if [ ! -f "$config_file" ]; then
+  config_file=$HOME"/.todo/"$config_file
+  if [ ! -f "$config_file" ]; then
+    echo "Config file does not exist: $config_file"
+    exit
+  fi
+fi
+source $config_file
 issues=("$issues_dir")
 all=""
 
