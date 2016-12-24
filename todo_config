@@ -1,0 +1,6 @@
+#!/bin/bash
+
+issues_dir="issues"
+seq_file="todo_seq"
+use_seq_prefix=""
+user="Username (email@some.net)" 
