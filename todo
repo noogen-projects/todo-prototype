@@ -90,7 +90,7 @@ if [ $1 = 'add' ]; then
   done
   
   if [ ! -z "$status" ]; then
-    $issues_dir="$issues_dir/$status"
+    issues_dir="$issues_dir/$status"
   fi
   echo "add $issues_dir/$priority.$id.$title.$suffix"
   touch "$issues_dir/$priority.$id.$title.$suffix"
