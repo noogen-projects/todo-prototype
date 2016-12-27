@@ -381,7 +381,11 @@ if [ $1 = 'tj' ]; then
               issue_time=$(echo "$issue_time ${BASH_REMATCH[1]}" | awk '{print $1+$2}')
               
               if [[ "$print_mode" == *"i"* ]] && [[ -z "$issue_printed" ]]; then
-                echo "$issue"
+                if [ "$print_mode" = "i" ]; then
+                  echo "$issue"
+                else
+                  printf "\n%s\n" "$issue"
+                fi
                 issue_printed="true"
               fi
               if [[ "$print_mode" == *"h"* ]] && [[ "$print_mode" != *"c"* ]]; then
@@ -491,5 +495,16 @@ if [ $1 = 'search' ]; then
     
     done
   fi
+  exit
+fi
+
+#####
+# git
+#####
+if [ $1 = 'git' ]; then
+  shift;
+  params=$(printf '%s ' "$@";)
+# see https://coderwall.com/p/grmruq/git-status-on-all-repos-in-folder
+  find . -name ".git" -type d -printf "%h\n" -exec sh -c "(cd {}/.. && git $params&& echo)" \;
   exit
 fi
